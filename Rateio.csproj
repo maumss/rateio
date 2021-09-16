@@ -58,6 +58,8 @@
     <Compile Include="MoedaConverter.cs" />
     <Compile Include="Rateio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RateioService.cs" />
+    <Compile Include="RateioVO.cs" />
     <EmbeddedResource Include="FormRateio.resx">
       <DependentUpon>FormRateio.cs</DependentUpon>
     </EmbeddedResource>
