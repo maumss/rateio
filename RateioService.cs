@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Rateio
 {
-    class RateioService
+    public class RateioService
     {
         public void RatearCustos(RateioVO rateioVO)
         {

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Rateio
 {
-    class RateioVO
+    public class RateioVO
     {
         public double TotalCompras { get; set; }
         public double ValorLiquido { get; set; }
