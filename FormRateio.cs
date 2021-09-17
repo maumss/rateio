@@ -98,35 +98,17 @@ namespace Rateio
             {
                 return;
             }
-            double totalCompras = moedaConverter.ConverterDeMoeda(textBoxCompras);
-            double totalVendas = moedaConverter.ConverterDeMoeda(textBoxVendas);
-            double valorLiquido = moedaConverter.ConverterDeMoeda(textBoxValorLiquido);
-            double custoTotal = Math.Abs(valorLiquido - Math.Abs(totalVendas - totalCompras));
-            textBoxCustos.Text = moedaConverter.ConverterParaMoeda(custoTotal.ToString());
-            double corretagem = moedaConverter.ConverterDeMoeda(textBoxCorretagem);
-            int quantidadeAtivos = listViewAtivos.Items.Count;
-            double custoExcetoCorretagem = custoTotal - (corretagem * quantidadeAtivos);
-            double custoRestante = custoTotal;
+            RateioVO rateioVO = new RateioVO();
+            rateioVO.TotalCompras = moedaConverter.ConverterDeMoeda(textBoxCompras);
+            rateioVO.ValorLiquido = moedaConverter.ConverterDeMoeda(textBoxValorLiquido);
+            rateioVO.TotalVendas = moedaConverter.ConverterDeMoeda(textBoxVendas);
+            rateioVO.Corretagem = moedaConverter.ConverterDeMoeda(textBoxCorretagem);
+            rateioVO.Items = listViewAtivos.Items;
 
-            for (int i = 0; i < listViewAtivos.Items.Count; i++)
-            {
-                string ticket = listViewAtivos.Items[i].SubItems[0].Text;
-                double valor = moedaConverter.ConverterDeMoeda(listViewAtivos.Items[i].SubItems[1].Text);
-                if (valor == 0.0) return;
-                double rateio = 0.0;
-                // calcula rateio
-                if ((i + 1) == quantidadeAtivos)
-                {
-                    rateio = custoRestante;
-                }
-                else
-                {
-                    rateio = (valor / (totalCompras + totalVendas)) * custoExcetoCorretagem + corretagem;
-                    rateio = Math.Round(rateio, 2);
-                    custoRestante -= rateio;
-                }
-                listViewAtivos.Items[i].SubItems[2].Text = moedaConverter.ConverterParaMoeda(rateio.ToString());
-            }
+            textBoxCustos.Text = moedaConverter.ConverterParaMoeda(rateioVO.CustoTotal.ToString());
+
+            RateioService rateioService = new RateioService();
+            rateioService.RatearCustos(rateioVO);
         }
 
         private Boolean ValidarRateio()
