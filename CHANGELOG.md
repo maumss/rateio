@@ -1,11 +1,11 @@
 # Change Log
 Rateio - Rateio de custos para cada ativo de uma nota de corretagem
 
-## [1.1.0] - 2021-06-16
+## [1.1.0] - 2021-09-16
 ### Added
 - [@maumss] Inclui teste unitário ao projeto.
 
-## [1.0.1] - 2021-06-15
+## [1.0.1] - 2021-09-15
 ### Added
 - [@maumss] Adiciona ícone ao projeto e tela principal.
 
