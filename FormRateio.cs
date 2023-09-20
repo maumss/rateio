@@ -136,7 +136,7 @@ namespace Rateio
                 double valor = moedaConverter.ConverterDeMoeda(listViewAtivos.Items[i].SubItems[1].Text);
                 totalOperacao += valor;
             }
-            if (totalOperacao != (totalCompras + totalVendas))
+            if (Math.Abs(totalOperacao - (totalCompras + totalVendas)) > 0.001)
             {
                 MessageBox.Show("O total da operação [" + totalOperacao.ToString() + "] não corresponde a soma das compras e vendas [" 
                     + (totalCompras + totalVendas).ToString(), "Rateio", MessageBoxButtons.OK, MessageBoxIcon.Error);
